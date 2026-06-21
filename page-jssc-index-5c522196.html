@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
+    <title>极速赛车 · 信息卡片索引</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: #eef5f5;
+            color: #1d2f3a;
+            line-height: 1.6;
+            padding: 20px 16px 40px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .page {
+            max-width: 1120px;
+            width: 100%;
+        }
+
+        /* 主视觉卡片 hero */
+        .hero-card {
+            background: linear-gradient(145deg, #0f4c5c 0%, #1a6b7a 100%);
+            border-radius: 36px;
+            padding: 2.2rem 2rem 2.8rem;
+            color: white;
+            margin-bottom: 2.5rem;
+            box-shadow: 0 12px 28px rgba(15, 76, 92, 0.25);
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-card::after {
+            content: '';
+            position: absolute;
+            bottom: -40px;
+            right: -40px;
+            width: 200px;
+            height: 200px;
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 50%;
+        }
+        .hero-card h1 {
+            font-size: 2.4rem;
+            font-weight: 550;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+            margin-bottom: 0.7rem;
+            position: relative;
+            z-index: 2;
+        }
+        .hero-card .sub {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            font-weight: 350;
+            max-width: 70%;
+            position: relative;
+            z-index: 2;
+        }
+        .hero-tag {
+            display: inline-block;
+            background: #c3e8e1;
+            color: #0f4c5c;
+            padding: 0.25rem 1rem;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            font-weight: 550;
+            margin-top: 1.2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* 网格卡片布局 */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.8rem;
+            margin: 2.2rem 0 1.8rem;
+        }
+        .card {
+            background: #ffffffec;
+            backdrop-filter: blur(2px);
+            border-radius: 28px;
+            padding: 1.6rem 1.4rem 1.8rem;
+            box-shadow: 0 6px 14px rgba(0, 20, 20, 0.06);
+            transition: transform 0.15s, box-shadow 0.2s;
+            border: 1px solid rgba(60, 130, 120, 0.08);
+        }
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 14px 26px rgba(15, 76, 92, 0.08);
+        }
+        .card-icon {
+            font-size: 2.1rem;
+            line-height: 1;
+            margin-bottom: 0.3rem;
+            display: block;
+        }
+        .card h3 {
+            font-size: 1.3rem;
+            font-weight: 550;
+            margin: 0.4rem 0 0.3rem;
+            color: #0b3b47;
+        }
+        .card p, .card li {
+            font-size: 0.95rem;
+            color: #2a404b;
+        }
+        .card ul {
+            list-style: none;
+            padding-left: 0;
+            margin-top: 0.5rem;
+        }
+        .card li {
+            padding: 0.15rem 0;
+            position: relative;
+            padding-left: 1.2rem;
+        }
+        .card li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: #2a8b7a;
+            font-weight: bold;
+        }
+
+        /* 自然链接段落 */
+        .link-paragraph {
+            background: #ffffffd9;
+            backdrop-filter: blur(3px);
+            border-radius: 30px;
+            padding: 1.8rem 2rem;
+            margin: 2.5rem 0 1rem;
+            border-left: 5px solid #2a8b7a;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+            font-size: 1rem;
+        }
+        .link-paragraph a {
+            color: #116b5e;
+            text-decoration: none;
+            font-weight: 540;
+            border-bottom: 1.5px dotted #2a8b7a;
+            transition: border 0.2s;
+        }
+        .link-paragraph a:hover {
+            border-bottom: 2px solid #0f4c5c;
+            color: #09443b;
+        }
+
+        /* 辅助模块 */
+        .faq-mini {
+            background: #e1f0ed;
+            border-radius: 24px;
+            padding: 1.3rem 1.6rem;
+            margin: 2rem 0 1.2rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+        .faq-item {
+            flex: 1 1 200px;
+        }
+        .faq-item strong {
+            display: block;
+            color: #074a4a;
+            font-weight: 550;
+            margin-bottom: 0.2rem;
+        }
+        .faq-item span {
+            font-size: 0.9rem;
+            color: #1d3e43;
+        }
+
+        .note {
+            font-size: 0.92rem;
+            background: #cfe5e0;
+            padding: 0.6rem 1.2rem;
+            border-radius: 60px;
+            display: inline-block;
+            color: #144a4a;
+            margin-top: 0.5rem;
+        }
+
+        /* 响应式 */
+        @media (max-width: 600px) {
+            .hero-card h1 { font-size: 2rem; }
+            .hero-card .sub { max-width: 100%; font-size: 1rem; }
+            .grid { gap: 1.2rem; }
+            .link-paragraph { padding: 1.3rem 1.2rem; }
+            body { padding: 12px 10px 30px; }
+        }
+        @media (min-width: 900px) {
+            .hero-card { padding: 3rem 3.5rem; }
+        }
+
+        .footer-remark {
+            margin-top: 2.8rem;
+            font-size: 0.8rem;
+            color: #607e81;
+            border-top: 1px solid #bed6d0;
+            padding-top: 1.2rem;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+
+    <!-- hero 主视觉卡片 -->
+    <div class="hero-card">
+        <h1>极速赛车 · 资料索引</h1>
+        <div class="sub">从数据整理与信息结构的角度，梳理这款竞速模型的基本用途、场景以及适合的用户群。</div>
+        <span class="hero-tag">信息卡片 · 知识型简述</span>
+    </div>
+
+    <!-- 用途卡片 / 功能侧写 -->
+    <div class="grid">
+        <div class="card">
+            <span class="card-icon">🏎️</span>
+            <h3>用途定位</h3>
+            <p>主要作为数字娱乐场景下的极速赛车体验载体，结合竞速逻辑与视觉反馈，用于休闲消遣、反应力练习以及竞速类内容整理。不涉及真实博彩或金融交易。</p>
+        </div>
+        <div class="card">
+            <span class="card-icon">🧩</span>
+            <h3>信息索引价值</h3>
+            <ul>
+                <li>赛车参数与表现数据归类</li>
+                <li>常见赛道/场景整理</li>
+                <li>用户经验与模式对比</li>
+                <li>版本更新与机制说明</li>
+            </ul>
+        </div>
+        <div class="card">
+            <span class="card-icon">👥</span>
+            <h3>适合人群</h3>
+            <ul>
+                <li>对竞速模拟有兴趣的爱好者</li>
+                <li>希望通过整理资料理解游戏机制的玩家</li>
+                <li>偏好轻量级信息卡片的阅读者</li>
+                <li>关注数字娱乐分类的普通用户</li>
+            </ul>
+        </div>
+        <div class="card">
+            <span class="card-icon">🔁</span>
+            <h3>使用场景</h3>
+            <ul>
+                <li>快速熟悉赛车特性与差异</li>
+                <li>查阅基本操作与反馈逻辑</li>
+                <li>作为资料归档的索引节点</li>
+                <li>对比不同模式下的表现</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 自然链接段落 (嵌入“极速赛车” a 标签) -->
+    <div class="link-paragraph">
+        <p>如果你正在寻找一个可以系统整理竞速资料的信息源，可以从 <a href="https://page-jssc.com">极速赛车</a> 的公开内容中提取基础框架。这个页面本身是一份静态资料卡，不提供任何直接游戏入口，仅用于归纳与索引。后续可基于该站点扩展更多分类与维度。</p>
+        <p style="margin-top: 0.6rem;">所有表述均基于公开信息整理，不构成策略建议或承诺。请自行判断内容适用性。</p>
+    </div>
+
+    <!-- FAQ 摘要风格块 -->
+    <div class="faq-mini">
+        <div class="faq-item">
+            <strong>❓ 这是官方页面吗？</strong>
+            <span>不是。这是一个资料整理性质的静态介绍页，用于索引与说明。</span>
+        </div>
+        <div class="faq-item">
+            <strong>📋 内容来源？</strong>
+            <span>基于公开可查的赛车模型描述及用户常见讨论归纳，不包含隐藏数据。</span>
+        </div>
+        <div class="faq-item">
+            <strong>🧭 后续更新？</strong>
+            <span>卡片样式和分类可能根据信息结构变化调整，保持索引清晰。</span>
+        </div>
+    </div>
+
+    <!-- 一个小提示 -->
+    <div class="note">
+        ⚡ 本页面仅作为信息卡片展示，无跳转逻辑与收集行为。
+    </div>
+
+    <div class="footer-remark">
+        极速赛车 · 资料索引 &nbsp;|&nbsp; 版式参考：蓝绿网格
+    </div>
+
+</div>
+</body>
+</html>
